@@ -401,7 +401,7 @@ module.exports = (nextApp, {
       .then(user => {
         if (user) {
           // Delete current token so it cannot be used again
-          delete user.emailToken
+          user.emailToken = null;
           // Mark email as verified now we know they have access to it
           user.emailVerified = true
           return functions.update(user, null, { delete: 'emailToken' })
